@@ -1,0 +1,8 @@
+[
+  { "id": "coffee", "name": "Coffee", "price": 45, "category": "Drinks", "tone": "coffee", "stock": 40 },
+  { "id": "sandwich", "name": "Sandwich", "price": 50, "category": "Food", "tone": "sandwich", "stock": 25 },
+  { "id": "softdrink", "name": "Soft Drink", "price": 35, "category": "Drinks", "tone": "softdrink", "stock": 50 },
+  { "id": "cookies", "name": "Cookies", "price": 25, "category": "Snacks", "tone": "cookies", "stock": 30 },
+  { "id": "water", "name": "Bottled Water", "price": 20, "category": "Drinks", "tone": "water", "stock": 60 },
+  { "id": "chocolate", "name": "Chocolate", "price": 25, "category": "Snacks", "tone": "chocolate", "stock": 35 }
+]
