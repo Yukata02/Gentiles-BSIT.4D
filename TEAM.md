@@ -1,15 +1,15 @@
-# Group Gentiles — BSIT 4D
+﻿# Group Gentiles â€” BSIT 4D
 
 GitHub repository: https://github.com/Yukata02/Gentiles-BSIT.4D
 
 | Member | GitHub username | Feature branch | Contribution |
 | --- | --- | --- | --- |
 | Yukata02 | [Yukata02](https://github.com/Yukata02) | `feature/item-selection` | Kiosk UI, product cards, cart, quantity controls |
-| Gentiles-Review | Gentiles-Review | `feature/order-summary` | Order / payment summary, back navigation, instructor order tests |
-| Gentiles-Pay | Gentiles-Pay | `feature/payment` | Cash, QR placeholder, card simulation, validation |
-| Gentiles-Receipt | Gentiles-Receipt | `feature/receipt-and-docs` | Success screen, digital receipt, reset, AI/docs, hosting notes |
+| Gentiles | [gentilesnea-lab](https://github.com/gentilesnea-lab) | `feature/order-summary` | Order / payment summary, back navigation, instructor order tests |
+| Mangulimotan | [ivansoftware](https://github.com/ivansoftware) | `feature/payment` | Cash, QR placeholder, card simulation, validation |
+| Loyola | [nlkojvcts4gh](https://github.com/nlkojvcts4gh) | `feature/receipt-and-docs` | Success screen, digital receipt, reset, AI/docs, hosting notes |
 
-Replace the three placeholder GitHub usernames with your classmates’ real accounts, then add them as **repository collaborators** (Settings → Collaborators) so GitHub can link their commits.
+Add [gentilesnea-lab](https://github.com/gentilesnea-lab) as a **repository collaborator** (Settings â†’ Collaborators) so GitHub links those commits to that account.
 
 ## Proof for submission
 
@@ -24,6 +24,6 @@ Replace the three placeholder GitHub usernames with your classmates’ real acco
 
 ## Live system
 
-After GitHub Pages is enabled (Settings → Pages → Deploy from branch `main` / root):
-
 **https://yukata02.github.io/Gentiles-BSIT.4D/**
+
+Enable it in [Settings â†’ Pages](https://github.com/Yukata02/Gentiles-BSIT.4D/settings/pages): Source = **GitHub Actions** (or branch `gh-pages` / root). Full steps are in [SUBMISSION.md](SUBMISSION.md).
