@@ -1,0 +1,7 @@
+.DS_Store
+Thumbs.db
+_exam_pages/
+_ui_pages/
+.vercel
+.netlify
+*.log
