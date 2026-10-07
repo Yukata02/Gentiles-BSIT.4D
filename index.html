@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Campus Store POS Kiosk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="kiosk">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">CS</div>
+        <div>
+          <strong>Campus Store</strong>
+          <span>Self-service kiosk</span>
+        </div>
+      </div>
+      <nav class="steps" id="steps" aria-label="Transaction steps">
+        <span class="step on" data-step="1">1 Order</span>
+        <span class="step" data-step="2">2 Review</span>
+        <span class="step" data-step="3">3 Payment</span>
+        <span class="step" data-step="4">4 Receipt</span>
+      </nav>
+    </header>
+
+    <main>
+      <section id="screen-items" class="screen active">
+        <div class="layout">
+          <div>
+            <div class="menu-head">
+              <h1>Tap a product to add it</h1>
+              <div class="filters" id="filters">
+                <button class="chip on" data-filter="All">All</button>
+                <button class="chip" data-filter="Drinks">Drinks</button>
+                <button class="chip" data-filter="Food">Food</button>
+                <button class="chip" data-filter="Snacks">Snacks</button>
+              </div>
+            </div>
+            <div class="products" id="products"></div>
+          </div>
+          <aside class="cart-panel">
+            <div class="cart-head">
+              <h2>Your Order</h2>
+              <span id="cart-count">0 items</span>
+            </div>
+            <div class="cart-list" id="cart-list"></div>
+            <div class="cart-foot">
+              <div class="totals">
+                <span>Total</span>
+                <span id="cart-total">₱0.00</span>
+              </div>
+              <button class="btn primary" id="btn-to-summary" disabled>Proceed to Payment →</button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="screen-summary" class="screen" hidden>
+        <div class="stage">
+          <h1>Review your order</h1>
+          <p class="lede">Check your items before paying. Tap Back to make changes — your items stay in the cart.</p>
+          <div class="review-card">
+            <div class="review-table" id="summary-lines"></div>
+            <div class="review-total">
+              <div>
+                <strong>Total Amount</strong>
+                <span id="summary-count">0 items</span>
+              </div>
+              <span class="price-lg" id="summary-total">₱0.00</span>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn ghost" id="btn-back-items">← Back</button>
+            <button class="btn primary wide" id="btn-to-pay">Continue to Payment →</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-method" class="screen" hidden>
+        <div class="stage">
+          <div class="method-head">
+            <div>
+              <h1>How would you like to pay?</h1>
+              <p class="lede">Tap one of the options below.</p>
+            </div>
+            <div class="due-card">
+              <span>AMOUNT DUE</span>
+              <strong id="method-total">₱0.00</strong>
+            </div>
+          </div>
+          <div class="pay-grid">
+            <button class="pay-card" data-method="Cash">
+              <span class="pay-icon cash">💵</span>
+              <h3>Cash</h3>
+              <p>Enter the amount you are paying. Change is computed for you.</p>
+            </button>
+            <button class="pay-card" data-method="QR Payment">
+              <span class="pay-icon qr">▦</span>
+              <h3>QR Payment</h3>
+              <p>Scan with a supported e-wallet or banking app.</p>
+            </button>
+            <button class="pay-card" data-method="Credit/Debit Card">
+              <span class="pay-icon card">💳</span>
+              <h3>Credit / Debit Card</h3>
+              <p>Tap, insert, or swipe your card at the reader.</p>
+            </button>
+          </div>
+          <div class="actions">
+            <button class="btn ghost" id="btn-back-summary">← Back to Order</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-cash" class="screen" hidden>
+        <div class="cash-layout">
+          <div>
+            <h1><span class="pay-icon cash sm">💵</span> Cash Payment</h1>
+            <div class="stat-row">
+              <span>Total amount</span>
+              <strong id="cash-total">₱0.00</strong>
+            </div>
+            <label class="cash-label" for="cash-input">Amount paid</label>
+            <div class="paid-box" id="cash-paid-wrap">
+              <span>₱</span>
+              <input id="cash-input" type="number" min="0" step="0.01" placeholder="0.00" inputmode="decimal" />
+            </div>
+            <p id="cash-error" class="alert" hidden></p>
+            <p class="hint-label">Quick amounts</p>
+            <div class="quick" id="quick-amounts">
+              <button type="button" data-quick="exact">Exact</button>
+              <button type="button" data-quick="200">₱200</button>
+              <button type="button" data-quick="500">₱500</button>
+              <button type="button" data-quick="1000">₱1,000</button>
+            </div>
+            <div class="change-box muted" id="cash-change-box">
+              <span>Change</span>
+              <span id="cash-change">—</span>
+            </div>
+          </div>
+          <div>
+            <div class="keypad" id="keypad"></div>
+            <button class="btn primary wide" id="btn-pay-cash">Pay Now</button>
+            <button class="btn ghost wide" id="btn-back-method-cash">← Change payment method</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-qr" class="screen" hidden>
+        <div class="split">
+          <div class="qr-panel">
+            <div class="qr-box" id="qr-box" aria-label="QR code placeholder"></div>
+            <p class="ref" id="qr-ref">Ref: QR pending</p>
+          </div>
+          <div>
+            <h1><span class="pay-icon qr sm">▦</span> QR Payment</h1>
+            <div class="stat-row accent">
+              <span>Amount to pay</span>
+              <strong id="qr-total">₱0.00</strong>
+            </div>
+            <ol class="steps-list">
+              <li>Scan the QR code using your supported payment application.</li>
+              <li id="qr-step-amount">Check that the amount matches and approve it in your app.</li>
+              <li>Tap Confirm Payment below.</li>
+            </ol>
+            <div class="actions">
+              <button class="btn ghost" id="btn-back-method-qr">← Back</button>
+              <button class="btn primary" id="btn-confirm-qr">✓ Confirm Payment</button>
+            </div>
+            <p class="note">Simulated payment — the amount paid will equal the total, with ₱0.00 change.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-card" class="screen" hidden>
+        <div class="split">
+          <div class="terminal-wrap">
+            <div class="terminal" id="card-terminal">
+              <div class="terminal-screen">
+                <small>AMOUNT</small>
+                <strong id="card-terminal-total">₱0.00</strong>
+              </div>
+              <div class="nfc">))) </div>
+              <div class="card-art"></div>
+            </div>
+          </div>
+          <div>
+            <h1><span class="pay-icon card sm">💳</span> Credit / Debit Card</h1>
+            <div class="stat-row accent">
+              <span>Amount due</span>
+              <strong id="card-total">₱0.00</strong>
+            </div>
+            <p class="lede strong">Please tap, insert, or swipe your card.</p>
+            <div class="process-box" id="card-process" hidden>
+              <strong id="card-status">Processing payment…</strong>
+              <div class="bar"><div class="bar-fill"></div></div>
+              <p>Do not remove your card until the payment is complete.</p>
+            </div>
+            <div class="actions">
+              <button class="btn ghost" id="btn-back-method-card">← Back</button>
+              <button class="btn primary" id="btn-process-card">Process Payment</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-success" class="screen" hidden>
+        <div class="success-card">
+          <div class="check">✓</div>
+          <h1>Payment Successful</h1>
+          <p class="lede">Transaction completed successfully. Thank you!</p>
+          <dl class="kv" id="success-details"></dl>
+          <button class="btn primary wide" id="btn-view-receipt">View Receipt</button>
+        </div>
+      </section>
+
+      <section id="screen-receipt" class="screen" hidden>
+        <div class="receipt-layout">
+          <div class="receipt" id="receipt"></div>
+          <div class="receipt-side">
+            <h1>Your receipt</h1>
+            <p class="lede">Keep this for your records. Tap New Transaction when you are done — your order and payment details will be cleared.</p>
+            <button class="btn primary wide" id="btn-new">+ New Transaction</button>
+            <button class="btn ghost wide" id="btn-print">Print Receipt</button>
+            <p class="note">Printing is optional — the digital receipt is your proof of payment.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
